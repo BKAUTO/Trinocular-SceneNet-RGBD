@@ -1,0 +1,1 @@
+./room_camera_intersection /home/will/Backup/ShapeNetCore.v2/ /home/will/WBK/SceneNet/SceneNetRGBD_Layouts/ /home/will/WBK/SceneNet/dysonroboticslab-scenenetrgb-d-afb686496a4a/scene_generator/build/scene_description.txt

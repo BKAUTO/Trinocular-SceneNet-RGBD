@@ -1,0 +1,1 @@
+./scenenet_render /home/will/Backup/ShapeNetCore.v2/ /home/will/WBK/SceneNet/SceneNetRGBD_Layouts/ /home/will/WBK/SceneNet/dysonroboticslab-scenenetrgb-d-afb686496a4a/camera_trajectory_generator/build/scene_and_trajectory_description.txt /home/will/WBK/render_out/

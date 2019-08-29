@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsutil_sdk.a  CMakeFiles/sutil_sdk.dir/rply-1.01/rply.c.o CMakeFiles/sutil_sdk.dir/Arcball.cpp.o CMakeFiles/sutil_sdk.dir/HDRLoader.cpp.o CMakeFiles/sutil_sdk.dir/Mesh.cpp.o CMakeFiles/sutil_sdk.dir/OptiXMesh.cpp.o CMakeFiles/sutil_sdk.dir/PPMLoader.cpp.o CMakeFiles/sutil_sdk.dir/sutil.cpp.o CMakeFiles/sutil_sdk.dir/tinyobjloader/tiny_obj_loader.cc.o CMakeFiles/sutil_sdk.dir/glew.c.o
+/usr/bin/ranlib libsutil_sdk.a
