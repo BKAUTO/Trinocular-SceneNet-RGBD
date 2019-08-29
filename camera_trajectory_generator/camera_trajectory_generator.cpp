@@ -120,9 +120,8 @@ class Scene {
 
 public:
 
-  Scene(std::string layout_file, std::string scenenet_layouts, pangolin::View& camera, float near_plane, float far_plane)
-  : camera_(camera)
-  , near_plane_(near_plane)
+  Scene(std::string layout_file, std::string scenenet_layouts, float near_plane, float far_plane)
+  : near_plane_(near_plane)
   , far_plane_(far_plane)
   , built_scene(false) {
       check_rgb = false;
@@ -207,10 +206,10 @@ public:
   }
 
   bool collided (const TooN::Vector<3,float> position, const TooN::Vector<3,float> next_position) {
-      pangolin::OpenGlRenderState s_cam(
-        pangolin::ProjectionMatrixRDF_BottomLeft(640,480,420.0,420.0,320,240,near_plane_,far_plane_),
-        pangolin::ModelViewLookAt(3,3,3, 0,0,0, pangolin::AxisNegZ)
-      );
+      //pangolin::OpenGlRenderState s_cam(
+        //pangolin::ProjectionMatrixRDF_BottomLeft(640,480,420.0,420.0,320,240,near_plane_,far_plane_),
+        //pangolin::ModelViewLookAt(3,3,3, 0,0,0, pangolin::AxisNegZ)
+      //);
 
       TooN::Vector<3>eye      = position;
       TooN::Vector<3>lookAt   = next_position;
@@ -250,9 +249,9 @@ public:
         }
       }
 
-      s_cam.SetModelViewMatrix(openglSE3Matrix);
-      s_cam.Apply();
-      camera_.ActivateScissorAndClear(s_cam);
+      //s_cam.SetModelViewMatrix(openglSE3Matrix);
+      //s_cam.Apply();
+      //camera_.ActivateScissorAndClear(s_cam);
       float min_depth = render_with_current_camera(true,640,480);
 
       if (min_depth < 0.3 || min_depth > 999.0) {
@@ -478,30 +477,30 @@ int main(int argc, char* argv[]) {
     glewInit();
 
     /// Create a Panel
-    pangolin::View& d_panel = pangolin::CreatePanel("ui")
-            .SetBounds(1.0, 0.0, 0, pangolin::Attach::Pix(150));
+    //pangolin::View& d_panel = pangolin::CreatePanel("ui")
+            //.SetBounds(1.0, 0.0, 0, pangolin::Attach::Pix(150));
 
     float near_plane = 0.01;
     float far_plane  = 1000;
 
-    pangolin::OpenGlRenderState s_cam(
-      pangolin::ProjectionMatrixRDF_BottomLeft(640,480,420.0,420.0,320,240,near_plane,far_plane),
-      pangolin::ModelViewLookAt(3,3,3, 0,0,0, pangolin::AxisNegZ)
-    );
+    //pangolin::OpenGlRenderState s_cam(
+      //pangolin::ProjectionMatrixRDF_BottomLeft(640,480,420.0,420.0,320,240,near_plane,far_plane),
+      //pangolin::ModelViewLookAt(3,3,3, 0,0,0, pangolin::AxisNegZ)
+    //);
 
-    pangolin::OpenGlRenderState saved_s_cam(
-      pangolin::ProjectionMatrixRDF_BottomLeft(640,480,420.0,420.0,320,240,near_plane,far_plane),
-      pangolin::ModelViewLookAt(3,3,3, 0,0,0, pangolin::AxisNegZ)
-    );
+    //pangolin::OpenGlRenderState saved_s_cam(
+      //pangolin::ProjectionMatrixRDF_BottomLeft(640,480,420.0,420.0,320,240,near_plane,far_plane),
+      //pangolin::ModelViewLookAt(3,3,3, 0,0,0, pangolin::AxisNegZ)
+    //);
 
     /// Add named OpenGL viewport to window and provide 3D Handler
-    pangolin::View& d_cam = pangolin::Display("cam")
-      .SetBounds(0.0, 1, pangolin::Attach::Pix(UI_WIDTH), 1, -640.0f/480.0f)
-      .SetHandler(new pangolin::Handler3D(s_cam));
+    //pangolin::View& d_cam = pangolin::Display("cam")
+      //.SetBounds(0.0, 1, pangolin::Attach::Pix(UI_WIDTH), 1, -640.0f/480.0f)
+      //.SetHandler(new pangolin::Handler3D(s_cam));
 
 
     std::cout<<"Loading my scene"<<std::endl;
-    Scene myscene(scene_description_file,layouts_dir,d_cam,near_plane,far_plane);
+    Scene myscene(scene_description_file,layouts_dir,near_plane,far_plane);
     std::cout<<"Loaded my scene"<<std::endl;
 
     srand(time(NULL));
@@ -690,9 +689,9 @@ int main(int argc, char* argv[]) {
 
         se3_pose = TooN::SE3<>(TooN::SO3<>(RotMat),eye);
 
-        if (render_camera_view) {
-            if (!is_s_cam_changed)
-                saved_s_cam = s_cam;
+        //if (render_camera_view) {
+            //if (!is_s_cam_changed)
+                //saved_s_cam = s_cam;
 
             TooN::SE3<>T_wc = se3_pose;
             TooN::SE3<>T_cw = T_wc.inverse();
@@ -716,15 +715,15 @@ int main(int argc, char* argv[]) {
                     openglSE3Matrix.m[col*4+row] = SE3Mat(row,col);
                 }
             }
-            s_cam.SetModelViewMatrix(openglSE3Matrix);
-            s_cam.Apply();
+            //s_cam.SetModelViewMatrix(openglSE3Matrix);
+            //s_cam.Apply();
             is_s_cam_changed = true;
         } else if (is_s_cam_changed) {
-              s_cam = saved_s_cam;
+              //s_cam = saved_s_cam;
               std::cout<<std::endl<<"Reverting camera"<<std::endl;
               is_s_cam_changed = false;
         }
-        d_cam.ActivateScissorAndClear(s_cam);
+        //d_cam.ActivateScissorAndClear(s_cam);
         //double check that we have a sensible viewpoint on the first frame
         if (frame_count == 1) {
           float max_depth = myscene.render_with_current_camera(show3DRoom,width,
@@ -741,7 +740,7 @@ int main(int argc, char* argv[]) {
                                                              objects2plot,
                                                              show_layout);
         count++;
-        d_panel.Render();
+        //d_panel.Render();
         pangolin::FinishFrame();
 
     }
