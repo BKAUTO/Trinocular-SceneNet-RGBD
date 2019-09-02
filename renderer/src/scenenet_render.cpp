@@ -146,20 +146,22 @@ bool BaseScene::trace(std::string save_name_base, int frame_num) {
   std::cout<<"Depth saving here:"<<save_name<<std::endl;
   sutil::displayBufferPPM(save_name.c_str(),getRawOutputBuffer()->get());
 
+  float baseline = 0.2;
+
   std::pair<TooN::Vector<3>,TooN::Vector<3> > start_pose_left = start_pose;
   std::pair<TooN::Vector<3>,TooN::Vector<3> > end_pose_left = end_pose;
-  start_pose_left.first[0] -= 0.2*now_camera.camera_u_1.x;
-  start_pose_left.first[1] -= 0.2*now_camera.camera_u_1.y;
-  start_pose_left.first[2] -= 0.2*now_camera.camera_u_1.z;
-  start_pose_left.second[0] -= 0.2*now_camera.camera_u_1.x;
-  start_pose_left.second[1] -= 0.2*now_camera.camera_u_1.y;
-  start_pose_left.second[2] -= 0.2*now_camera.camera_u_1.z;
-  end_pose_left.first[0] -= 0.2*now_camera.camera_u_1.x;
-  end_pose_left.first[1] -= 0.2*now_camera.camera_u_1.y;
-  end_pose_left.first[2] -= 0.2*now_camera.camera_u_1.z;
-  end_pose_left.second[0] -= 0.2*now_camera.camera_u_1.x;
-  end_pose_left.second[1] -= 0.2*now_camera.camera_u_1.y;
-  end_pose_left.second[2] -= 0.2*now_camera.camera_u_1.z;
+  start_pose_left.first[0] -= baseline*now_camera.camera_u_1.x;
+  start_pose_left.first[1] -= baseline*now_camera.camera_u_1.y;
+  start_pose_left.first[2] -= baseline*now_camera.camera_u_1.z;
+  start_pose_left.second[0] -= baseline*now_camera.camera_u_1.x;
+  start_pose_left.second[1] -= baseline*now_camera.camera_u_1.y;
+  start_pose_left.second[2] -= baseline*now_camera.camera_u_1.z;
+  end_pose_left.first[0] -= baseline*now_camera.camera_u_1.x;
+  end_pose_left.first[1] -= baseline*now_camera.camera_u_1.y;
+  end_pose_left.first[2] -= baseline*now_camera.camera_u_1.z;
+  end_pose_left.second[0] -= baseline*now_camera.camera_u_1.x;
+  end_pose_left.second[1] -= baseline*now_camera.camera_u_1.y;
+  end_pose_left.second[2] -= baseline*now_camera.camera_u_1.z;
 
 
   std::cout<<"About to render L_RGB"<<std::endl;
@@ -180,18 +182,18 @@ bool BaseScene::trace(std::string save_name_base, int frame_num) {
 
   std::pair<TooN::Vector<3>,TooN::Vector<3> > start_pose_right = start_pose;
   std::pair<TooN::Vector<3>,TooN::Vector<3> > end_pose_right = end_pose;
-  start_pose_right.first[0] += 0.2*now_camera.camera_u_1.x;
-  start_pose_right.first[1] += 0.2*now_camera.camera_u_1.y;
-  start_pose_right.first[2] += 0.2*now_camera.camera_u_1.z;
-  start_pose_right.second[0] += 0.2*now_camera.camera_u_1.x;
-  start_pose_right.second[1] += 0.2*now_camera.camera_u_1.y;
-  start_pose_right.second[2] += 0.2*now_camera.camera_u_1.z;
-  end_pose_right.first[0] += 0.2*now_camera.camera_u_1.x;
-  end_pose_right.first[1] += 0.2*now_camera.camera_u_1.y;
-  end_pose_right.first[2] += 0.2*now_camera.camera_u_1.z;
-  end_pose_right.second[0] += 0.2*now_camera.camera_u_1.x;
-  end_pose_right.second[1] += 0.2*now_camera.camera_u_1.y;
-  end_pose_right.second[2] += 0.2*now_camera.camera_u_1.z;
+  start_pose_right.first[0] += baseline*now_camera.camera_u_1.x;
+  start_pose_right.first[1] += baseline*now_camera.camera_u_1.y;
+  start_pose_right.first[2] += baseline*now_camera.camera_u_1.z;
+  start_pose_right.second[0] += baseline*now_camera.camera_u_1.x;
+  start_pose_right.second[1] += baseline*now_camera.camera_u_1.y;
+  start_pose_right.second[2] += baseline*now_camera.camera_u_1.z;
+  end_pose_right.first[0] += baseline*now_camera.camera_u_1.x;
+  end_pose_right.first[1] += baseline*now_camera.camera_u_1.y;
+  end_pose_right.first[2] += baseline*now_camera.camera_u_1.z;
+  end_pose_right.second[0] += baseline*now_camera.camera_u_1.x;
+  end_pose_right.second[1] += baseline*now_camera.camera_u_1.y;
+  end_pose_right.second[2] += baseline*now_camera.camera_u_1.z;
 
 
   std::cout<<"About to render R_RGB"<<std::endl;
@@ -211,18 +213,18 @@ bool BaseScene::trace(std::string save_name_base, int frame_num) {
 
   std::pair<TooN::Vector<3>,TooN::Vector<3> > start_pose_bottom = start_pose;
   std::pair<TooN::Vector<3>,TooN::Vector<3> > end_pose_bottom = end_pose;
-  start_pose_bottom.first[0] -= 0.2*now_camera.camera_v_1.x;
-  start_pose_bottom.first[1] -= 0.2*now_camera.camera_v_1.y;
-  start_pose_bottom.first[2] -= 0.2*now_camera.camera_v_1.z;
-  start_pose_bottom.second[0] -= 0.2*now_camera.camera_v_1.x;
-  start_pose_bottom.second[1] -= 0.2*now_camera.camera_v_1.y;
-  start_pose_bottom.second[2] -= 0.2*now_camera.camera_v_1.z;
-  end_pose_bottom.first[0] -= 0.2*now_camera.camera_v_1.x;
-  end_pose_bottom.first[1] -= 0.2*now_camera.camera_v_1.y;
-  end_pose_bottom.first[2] -= 0.2*now_camera.camera_v_1.z;
-  end_pose_bottom.second[0] -= 0.2*now_camera.camera_v_1.x;
-  end_pose_bottom.second[1] -= 0.2*now_camera.camera_v_1.y;
-  end_pose_bottom.second[2] -= 0.2*now_camera.camera_v_1.z;
+  start_pose_bottom.first[0] -= baseline*now_camera.camera_v_1.x;
+  start_pose_bottom.first[1] -= baseline*now_camera.camera_v_1.y;
+  start_pose_bottom.first[2] -= baseline*now_camera.camera_v_1.z;
+  start_pose_bottom.second[0] -= baseline*now_camera.camera_v_1.x;
+  start_pose_bottom.second[1] -= baseline*now_camera.camera_v_1.y;
+  start_pose_bottom.second[2] -= baseline*now_camera.camera_v_1.z;
+  end_pose_bottom.first[0] -= baseline*now_camera.camera_v_1.x;
+  end_pose_bottom.first[1] -= baseline*now_camera.camera_v_1.y;
+  end_pose_bottom.first[2] -= baseline*now_camera.camera_v_1.z;
+  end_pose_bottom.second[0] -= baseline*now_camera.camera_v_1.x;
+  end_pose_bottom.second[1] -= baseline*now_camera.camera_v_1.y;
+  end_pose_bottom.second[2] -= baseline*now_camera.camera_v_1.z;
 
   std::cout<<"About to render B_RGB"<<std::endl;
   m_render_type = RenderType::IMAGE;
@@ -241,18 +243,18 @@ bool BaseScene::trace(std::string save_name_base, int frame_num) {
 
   std::pair<TooN::Vector<3>,TooN::Vector<3> > start_pose_top = start_pose;
   std::pair<TooN::Vector<3>,TooN::Vector<3> > end_pose_top = end_pose;
-  start_pose_top.first[0] += 0.2*now_camera.camera_v_1.x;
-  start_pose_top.first[1] += 0.2*now_camera.camera_v_1.y;
-  start_pose_top.first[2] += 0.2*now_camera.camera_v_1.z;
-  start_pose_top.second[0] += 0.2*now_camera.camera_v_1.x;
-  start_pose_top.second[1] += 0.2*now_camera.camera_v_1.y;
-  start_pose_top.second[2] += 0.2*now_camera.camera_v_1.z;
-  end_pose_top.first[0] += 0.2*now_camera.camera_v_1.x;
-  end_pose_top.first[1] += 0.2*now_camera.camera_v_1.y;
-  end_pose_top.first[2] += 0.2*now_camera.camera_v_1.z;
-  end_pose_top.second[0] += 0.2*now_camera.camera_v_1.x;
-  end_pose_top.second[1] += 0.2*now_camera.camera_v_1.y;
-  end_pose_top.second[2] += 0.2*now_camera.camera_v_1.z;
+  start_pose_top.first[0] += baseline*now_camera.camera_v_1.x;
+  start_pose_top.first[1] += baseline*now_camera.camera_v_1.y;
+  start_pose_top.first[2] += baseline*now_camera.camera_v_1.z;
+  start_pose_top.second[0] += baseline*now_camera.camera_v_1.x;
+  start_pose_top.second[1] += baseline*now_camera.camera_v_1.y;
+  start_pose_top.second[2] += baseline*now_camera.camera_v_1.z;
+  end_pose_top.first[0] += baseline*now_camera.camera_v_1.x;
+  end_pose_top.first[1] += baseline*now_camera.camera_v_1.y;
+  end_pose_top.first[2] += baseline*now_camera.camera_v_1.z;
+  end_pose_top.second[0] += baseline*now_camera.camera_v_1.x;
+  end_pose_top.second[1] += baseline*now_camera.camera_v_1.y;
+  end_pose_top.second[2] += baseline*now_camera.camera_v_1.z;
 
 
   std::cout<<"About to render T_RGB"<<std::endl;
